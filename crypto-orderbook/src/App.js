@@ -17,7 +17,7 @@ class App extends Component<Props> {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/bittrex')
+    axios.get('http://localhost:3001/api/orderbook')
       .then((res) => {
         console.log(res);
         this.setState({
@@ -44,15 +44,15 @@ class App extends Component<Props> {
      
       let listOfAsks = this.state.sellData.map((sell, index) => {
         return <li key={index}>
-                  <p className='sellPrice'>Price: {sell.Rate}</p> 
-                  <p className='sellQuantity'>Quantity: {sell.Quantity}</p>
-                </li> 
+                <p className='sellPrice'>{sell.Rate}</p> 
+                <p className='sellQuantity'>{sell.Quantity}</p>
+              </li> 
       })
 
       let listOfBids = this.state.buyData.map((buy, index) => {
-        return <li key={index}>
-                  <p className='buyQuantity'> Quantity: {buy.Quantity}</p>
-                  <p className='buyPrice'> Price: {buy.Rate}</p>
+        return <li key={index}>                  
+                <p className='buyQuantity'>{buy.Quantity}</p>                 
+                <p className='buyPrice'>{buy.Rate}</p>
                </li>   
       })
 
@@ -62,11 +62,17 @@ class App extends Component<Props> {
       <div className="App">
         
           <div className='bid'>
+            <h1>Bids</h1>
+            <h2 className='bidvolume'>volume</h2>
+            <h2 className='bidpricepoint'>pricepoint</h2>
             <ul className="bidlist">
               {listOfBids}
             </ul> 
           </div>
           <div className='ask'> 
+            <h1 id='askh1'>Asks</h1>
+            <h2 className='askvolume'>volume</h2>
+            <h2 className='askpricepoint'>pricepoint</h2>
             <ul className='asklist'>
               {listOfAsks}
             </ul>

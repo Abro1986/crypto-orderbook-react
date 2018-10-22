@@ -5,70 +5,74 @@
   height: 40vmin;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+
 
 .App-link {
   color: #61dafb;
 }
 
-li {
-  font-size: 10px,
+ul {
+  list-style-type: none; 
 }
 
 .bid{
-  position: relative;
-  display:inline-block;
-  left: 0;
-}
-
-.ask{
-  position: absolute;
-  display:inline-block;
-  right: 0; 
-}
-
-.bidlist{
-  position: relative;
-  display: inline;
-  text-align: left;
-}
-
-.asklist{
-  position: relative;
-  display: inline;
-  text-align: right;
+  
+  display: inline-block;
   
 }
 
-.sellPrice {
-  text-align: left;
+.ask{
+  position: relative;
+  
+  display: inline-block;
+   
 }
 
-.sellQuantity {
-  text-align: right;
+.bidlist{
+ 
+ 
+  
 }
 
-.buyPrice {
-  text-align: left;
+.asklist{
+  
+
+  
 }
 
-.sellQuantity {
-  text-align: right;
+.sellPrice, .askpricepoint {
+  float: left;
+  background-color: red;
 }
+
+.sellQuantity, .askvolume {
+  float: right;
+}
+
+.buyPrice, .bidpricepoint {
+  float: right;
+  background-color: green;
+
+}
+
+.buyQuantity, .bidvolume {
+  float: left;
+}
+
+#askh1 {
+  
+}
+
+h1 {
+  border-bottom: 1px solid;
+}
+
+
 
 p {
-  font-size: 20px;
   display: inline;
-  padding: 10px;
+  margin: 0;
+  
 }
 
 @keyframes App-logo-spin {
