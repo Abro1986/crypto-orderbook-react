@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import Orderbooklist from './Components/Orderbooklist'
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
-type Props = {};
-class App extends Component<Props> {
+
+class App extends Component {
   constructor(props){
       super(props)
 
@@ -25,16 +23,14 @@ class App extends Component<Props> {
       first: 'BTC',
       second: 'ETH'
     }
-    axios.post('http://localhost:3001/api/orderbook', post)
-      .then((res) => {
-        console.log(res);
+    axios.post('https://secret-spire-98789.herokuapp.com/api/orderbook', post)
+      .then((res) => {       
         this.setState({
           sellData: res.data.asks,
           buyData: res.data.bids,
           market: 'BTC-ETH'
         })
       })
-      console.log(this.state)
   }
 
   onClick() {
@@ -42,16 +38,15 @@ class App extends Component<Props> {
       first: 'BTC',
       second: 'LTC'
     }
-    axios.post('http://localhost:3001/api/orderbook', post)
-      .then((res) => {
-        console.log(res);
+    axios.post('https://secret-spire-98789.herokuapp.com/api/orderbook', post)
+      .then((res) => {        
         this.setState({
           sellData: res.data.asks,
           buyData: res.data.bids,
           market: 'BTC-LTC'
         })
       })
-      console.log(this.state)
+      
   }
 
   
@@ -64,7 +59,7 @@ class App extends Component<Props> {
   // }
 
   render() {
-    console.log(this.state)
+    
 //    let listOfOrders = null
 
      
