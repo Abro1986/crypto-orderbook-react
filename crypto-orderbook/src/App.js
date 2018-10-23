@@ -11,18 +11,44 @@ class App extends Component<Props> {
 
     this.state = {
       sellData: [],
-      buyData: []
+      buyData: [],
+      first: '',
+      second: ''
     };
     this.componentDidMount = this.componentDidMount.bind(this)
+    this.onClick = this.onClick.bind(this)
+
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/orderbook')
+    let post = {
+      first: 'BTC',
+      second: 'ETH'
+    }
+    axios.post('http://localhost:3001/api/orderbook', post)
       .then((res) => {
         console.log(res);
         this.setState({
           sellData: res.data.asks,
-          buyData: res.data.bids
+          buyData: res.data.bids,
+          market: 'BTC-ETH'
+        })
+      })
+      console.log(this.state)
+  }
+
+  onClick() {
+    let post = {
+      first: 'BTC',
+      second: 'LTC'
+    }
+    axios.post('http://localhost:3001/api/orderbook', post)
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          sellData: res.data.asks,
+          buyData: res.data.bids,
+          market: 'BTC-LTC'
         })
       })
       console.log(this.state)
@@ -60,24 +86,32 @@ class App extends Component<Props> {
     
     return (
       <div className="App">
-        
-          <div className='bid'>
-            <h1>Bids</h1>
-            <h2 className='bidvolume'>volume</h2>
-            <h2 className='bidpricepoint'>pricepoint</h2>
-            <ul className="bidlist">
-              {listOfBids}
-            </ul> 
+          <div className='header'>
+            <button onClick= { this.onClick }>BTC to LTC market</button>
+            <button onClick= { this.componentDidMount }>BTC to ETH market</button>
+            <h1>{this.state.market}</h1>
           </div>
-          <div className='ask'> 
-            <h1 id='askh1'>Asks</h1>
-            <h2 className='askvolume'>volume</h2>
-            <h2 className='askpricepoint'>pricepoint</h2>
-            <ul className='asklist'>
-              {listOfAsks}
-            </ul>
+          
+            <div className='bid'>
+              <h1>Bids</h1>
+              <div>
+                <h2 className='bidvolume'>volume</h2>
+                <h2 className='bidpricepoint'>pricepoint</h2>
+              </div>
+              <ul className="bidlist">
+                {listOfBids}
+              </ul> 
+            </div>
+            <div className='ask'> 
+              <h1 id='askh1'>Asks</h1>
+              <h2 className='askpricepoint'>pricepoint</h2>
+              <h2 className='askvolume'>volume</h2>
+              <ul className='asklist'>
+                {listOfAsks}
+              </ul>
+
+            
           </div>
-        
       </div>
     );
   }
